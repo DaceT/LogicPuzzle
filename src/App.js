@@ -5,10 +5,10 @@ import {
   SceneView
 } from "@react-navigation/core";
 import { createBrowserApp, Link } from "@react-navigation/web";
-import Home from './Home';
-import Selector from './GameSelector';
-import SinglePlayer from './SinglePlayerBoard';
-import Leaderboard from './Leaderboard';
+import Home from './screens/Home';
+import Selector from './screens/GameSelector';
+import SinglePlayer from './screens/SinglePlayerBoard';
+import Leaderboard from './screens/Leaderboard';
 window.__DEV__ = true;
 
 
