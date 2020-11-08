@@ -9,6 +9,7 @@ import Home from './screens/Home';
 import Selector from './screens/GameSelector';
 import SinglePlayer from './screens/SinglePlayerBoard';
 import Leaderboard from './screens/Leaderboard';
+import DataTesting from './screens/DataTesting';
 window.__DEV__ = true;
 
 
@@ -66,6 +67,8 @@ class SidebarView extends React.Component {
               <Link routeName="SinglePlayer" params={{ name: "jamie" }}>Game </Link>
 
               <Link routeName="Leaderboard" params={{ name: "brent" }}>Leaderboard </Link>
+
+              <Link routeName="DataTesting" params={{ name: "brent" }}>DataTesting </Link>
             </div>
           </div>
 
@@ -91,6 +94,7 @@ const AppNavigator = createNavigator(
     Selector,
     SinglePlayer,
     Leaderboard,
+    DataTesting,
   }),
   {}
 );
