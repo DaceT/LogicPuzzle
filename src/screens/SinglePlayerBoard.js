@@ -1,7 +1,11 @@
 import React from 'react';
 import { createBrowserApp, Link } from "@react-navigation/web";
 import Game from './GameComponents';
+<<<<<<< HEAD
 // import Hints from './HintComponents';
+=======
+import Hints from './HintComponents';
+>>>>>>> added basic structure for grid.
 
 
 

@@ -1,9 +1,12 @@
 import React from 'react';
 import './GameComponents.css';
+<<<<<<< HEAD
 import '../App.css';
 
 import * as firebase from 'firebase';
 
+=======
+>>>>>>> added basic structure for grid.
 
 class Square extends React.Component {
 
@@ -36,9 +39,12 @@ class Square extends React.Component {
 }
 
 class Board6x6 extends React.Component {
+<<<<<<< HEAD
 
   
 
+=======
+>>>>>>> added basic structure for grid.
   renderSquare(i) {
     return <Square value={i} />;
   }
@@ -46,7 +52,10 @@ class Board6x6 extends React.Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD
         
+=======
+>>>>>>> added basic structure for grid.
         <div className="board-row">
           {this.renderSquare(this.props.rows[0][0])}
           {this.renderSquare(this.props.rows[0][1])}
@@ -54,7 +63,11 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[0][3])}
           {this.renderSquare(this.props.rows[0][4])}
           {this.renderSquare(this.props.rows[0][5])}
+<<<<<<< HEAD
           {/* {this.renderSquare(this.props.rows[0][6])} */}
+=======
+          {this.renderSquare(this.props.rows[0][6])}
+>>>>>>> added basic structure for grid.
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[1][0])}
@@ -63,7 +76,11 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[1][3])}
           {this.renderSquare(this.props.rows[1][4])}
           {this.renderSquare(this.props.rows[1][5])}
+<<<<<<< HEAD
           {/* {this.renderSquare(this.props.rows[1][6])} */}
+=======
+          {this.renderSquare(this.props.rows[1][6])}
+>>>>>>> added basic structure for grid.
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[2][0])}
@@ -72,22 +89,37 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[2][3])}
           {this.renderSquare(this.props.rows[2][4])}
           {this.renderSquare(this.props.rows[2][5])}
+<<<<<<< HEAD
           {/* {this.renderSquare(this.props.rows[2][6])} */}
+=======
+          {this.renderSquare(this.props.rows[2][6])}
+>>>>>>> added basic structure for grid.
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[3][0])}
           {this.renderSquare(this.props.rows[3][1])}
           {this.renderSquare(this.props.rows[3][2])}
+<<<<<<< HEAD
           {/* {this.renderSquare(this.props.rows[3][3])}
           {this.renderSquare(this.props.rows[3][4])}
           {this.renderSquare(this.props.rows[3][5])} */}
           {/* {this.renderSquare(this.props.rows[3][6])} */}
+=======
+          {this.renderSquare(this.props.rows[3][3])}
+          {this.renderSquare(this.props.rows[3][4])}
+          {this.renderSquare(this.props.rows[3][5])}
+          {this.renderSquare(this.props.rows[3][6])}
+>>>>>>> added basic structure for grid.
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[4][0])}
           {this.renderSquare(this.props.rows[4][1])}
           {this.renderSquare(this.props.rows[4][2])}
+<<<<<<< HEAD
           {/* {this.renderSquare(this.props.rows[4][3])} */}
+=======
+          {this.renderSquare(this.props.rows[4][3])}
+>>>>>>> added basic structure for grid.
           {/* {this.renderSquare(this.props.rows[4][4])}
           {this.renderSquare(this.props.rows[4][5])}
           {this.renderSquare(this.props.rows[4][6])} */}
@@ -96,16 +128,27 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[5][0])}
           {this.renderSquare(this.props.rows[5][1])}
           {this.renderSquare(this.props.rows[5][2])}
+<<<<<<< HEAD
           {/* {this.renderSquare(this.props.rows[5][3])} */}
+=======
+          {this.renderSquare(this.props.rows[5][3])}
+>>>>>>> added basic structure for grid.
           {/* {this.renderSquare(this.props.rows[5][4])}
           {this.renderSquare(this.props.rows[5][5])}
           {this.renderSquare(this.props.rows[5][6])} */}
         </div>
         <div className="board-row">
+<<<<<<< HEAD
           {/* {this.renderSquare(this.props.rows[6][0])}
           {this.renderSquare(this.props.rows[6][1])}
           {this.renderSquare(this.props.rows[6][2])} */}
           {/* {this.renderSquare(this.props.rows[6][3])} */}
+=======
+          {this.renderSquare(this.props.rows[6][0])}
+          {this.renderSquare(this.props.rows[6][1])}
+          {this.renderSquare(this.props.rows[6][2])}
+          {this.renderSquare(this.props.rows[6][3])}
+>>>>>>> added basic structure for grid.
           {/* {this.renderSquare(this.props.rows[6][4])}
           {this.renderSquare(this.props.rows[6][5])}
           {this.renderSquare(this.props.rows[6][6])} */}
