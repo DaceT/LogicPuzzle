@@ -34,6 +34,9 @@ window.__DEV__ = true;
 //   linkName: "Profile Page"
 // });
 
+// var login = require('./screens/login.html');
+
+
 class SidebarView extends React.Component {
   render() {
     const { descriptors, navigation } = this.props;
@@ -43,6 +46,7 @@ class SidebarView extends React.Component {
       <div
         style={{ display: "flex", height: "100%", alignItems: 'center', flexDirection: "column" }}
       >
+
         <div
           style={{
             width: "100%",
@@ -69,6 +73,7 @@ class SidebarView extends React.Component {
               <Link routeName="Leaderboard" params={{ name: "brent" }}>Leaderboard </Link>
 
               <Link routeName="DataTesting" params={{ name: "brent" }}>DataTesting </Link>
+
             </div>
           </div>
 

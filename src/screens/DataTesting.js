@@ -58,17 +58,18 @@ class DataTesting extends React.Component {
       <div>
         <h2>Data Testing Screen</h2>
         <div className={"row2"}>
-
           <div>
+            <div style={{ paddingTop: 120 }} />
+
             {this.state.puzzle != undefined && <div className={"row"}>
               <div class="left">
                 <p className={"h-text"}>{this.state.puzzle[0].cat2}</p>
               </div>
 
               <div className={"right"}>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat2op[0]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat2op[1]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat2op[2]}</div>
+                <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[0]}</div>
+                <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[1]}</div>
+                <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[2]}</div>
               </div>
 
             </div>}
@@ -79,41 +80,41 @@ class DataTesting extends React.Component {
               </div>
 
               <div className={"right"}>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat1op[0]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat1op[1]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat1op[2]}</div>
+                <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[0]}</div>
+                <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[1]}</div>
+                <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[2]}</div>
               </div>
 
             </div>}
           </div>
-          
+
           <div style={{ padding: 40 }} />
 
           {this.state.puzzle != undefined && <div>
-                <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
-              <div style={{ marginBottom: 20 }} />
+            <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
+            <div style={{ marginBottom: 20 }} />
 
-              <div className={"right2"}>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat3op[0]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat3op[1]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat3op[2]}</div>
-              </div>
+            <div className={"right2"}>
+              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[0]}</div>
+              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[1]}</div>
+              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[2]}</div>
+            </div>
 
-            </div>}
+          </div>}
 
-            <div style={{ padding: 20 }} />
+          <div style={{ padding: 20 }} />
 
-            {this.state.puzzle != undefined && <div>
-                <p className={"h-text2"}>{this.state.puzzle[0].cat4}</p>
-              <div style={{ marginBottom: 30 }} />
+          {this.state.puzzle != undefined && <div>
+            <p className={"h-text2"}>{this.state.puzzle[0].cat4}</p>
+            <div style={{ marginBottom: 30 }} />
 
-              <div className={"right2"}>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat4op[0]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat4op[1]}</div>
-                <div className={"Board-Options"}> {this.state.puzzle[0].cat4op[2]}</div>
-              </div>
+            <div className={"right2"}>
+              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[0]}</div>
+              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[1]}</div>
+              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[2]}</div>
+            </div>
 
-            </div>}
+          </div>}
         </div>
       </div>
 
