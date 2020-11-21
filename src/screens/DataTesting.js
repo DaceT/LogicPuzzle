@@ -62,38 +62,42 @@ class DataTesting extends React.Component {
 
         <div className={"column"}>
 
-            {/* <div style={{ padding: 40 }} /> */}
-            {this.state.puzzle != undefined && <div>
+          {/* <div style={{ padding: 40 }} /> */}
+          {this.state.puzzle != undefined && <div>
               <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
-              <div style={{ marginBottom: 20 }} />
 
-              <div className={"right2"}>
-                <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[0]}</div>
-                <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[1]}</div>
-                <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[2]}</div>
-              </div>
 
-            </div>}
+            {/* <div style={{ marginTop: 20 }} /> */}
 
-            <div style={{ padding: 20 }} />
+            <div className={"right2"}>
+              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[0]}</div>
+              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[1]}</div>
+              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[2]}</div>
+            </div>
 
-            {this.state.puzzle != undefined && <div>
-              <p className={"h-text2"}>{this.state.puzzle[0].cat4}</p>
-              <div style={{ marginBottom: 30 }} />
+          </div>}
 
-              <div className={"right2"}>
-                <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[0]}</div>
-                <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[1]}</div>
-                <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[2]}</div>
-              </div>
+          <div style={{ paddingLeft: 80 }} />
 
-            </div>}
+          {this.state.puzzle != undefined && <div>
+            <p className={"h-text2"}>{this.state.puzzle[0].cat4}</p>
+            <div style={{ marginBottom: 15 }} />
 
-          </div>
+            <div className={"right2"}>
+              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[0]}</div>
+              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[1]}</div>
+              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[2]}</div>
+            </div>
+
+          </div>}
+
+        </div>
+
+        <div style={{ paddingTop: 10 }} />
 
         <div className={"row2"}>
           <div>
-            {/* <div style={{ paddingTop: 120 }} /> */}
+            <div style={{ paddingTop: 51 }} />
 
             {this.state.puzzle != undefined && <div className={"row"}>
               <div class="left">
@@ -107,6 +111,8 @@ class DataTesting extends React.Component {
               </div>
 
             </div>}
+
+            <div style={{ paddingTop: 53 }} />
 
             {this.state.puzzle != undefined && <div className={"row"}>
               <div class="left">
@@ -122,14 +128,14 @@ class DataTesting extends React.Component {
             </div>}
 
           </div>
-          <div style={{ paddingLeft: 50 }} />
+          <div style={{ paddingLeft: 25 }} />
           <div style={{ paddingTop: 50 }}>
             <Game grids={this.state.grid} />
 
           </div>
 
 
-          
+
 
 
 
@@ -141,7 +147,7 @@ class DataTesting extends React.Component {
         </div>
 
 
-        
+
       </div>
 
 
