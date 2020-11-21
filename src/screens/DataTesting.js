@@ -30,6 +30,7 @@ class DataTesting extends React.Component {
           cat3op: doc.data().cat3options,
           cat4: doc.data().cat4,
           cat4op: doc.data().cat4options,
+          hints: doc.data().hints,
           solution: doc.data().solution,
           size: doc.data().size,
         })
@@ -64,7 +65,7 @@ class DataTesting extends React.Component {
 
           {/* <div style={{ padding: 40 }} /> */}
           {this.state.puzzle != undefined && <div>
-              <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
+            <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
 
 
             {/* <div style={{ marginTop: 20 }} /> */}
@@ -128,6 +129,8 @@ class DataTesting extends React.Component {
             </div>}
 
           </div>
+
+
           <div style={{ paddingLeft: 25 }} />
           <div style={{ paddingTop: 50 }}>
             <Game grids={this.state.grid} />
@@ -146,6 +149,20 @@ class DataTesting extends React.Component {
 
         </div>
 
+
+        {this.state.puzzle != undefined && <div>
+
+          <div class="left">
+            <p className={"h-hints"}>Hints</p>
+          </div>
+
+          <div style={{ paddingTop: 20 }} />
+
+          <div className={"Hints"}> 1.) {this.state.puzzle[0].hints[0]}</div>
+          <div className={"Hints"}> 2.) {this.state.puzzle[0].hints[1]}</div>
+          <div className={"Hints"}> 3.) {this.state.puzzle[0].hints[2]}</div>
+          <div className={"Hints"}> 4.) {this.state.puzzle[0].hints[3]}</div>
+        </div>}
 
 
       </div>
