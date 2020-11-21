@@ -125,9 +125,8 @@
   height: 100px;
   /* border: 2px solid green; */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+  align-content: center;
+  /* align-items: center; */
 }
 
 .column {
@@ -136,7 +135,7 @@
   /* border: 2px solid green; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   color: white;
 }
 .row2 {
@@ -145,7 +144,6 @@
   /* border: 2px solid green; */
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   color: white;
 }
 

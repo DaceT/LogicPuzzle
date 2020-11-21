@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserApp, Link } from "@react-navigation/web";
-
+import Game from './GameComponents';
+// import Hints from './HintComponents';
 
 
 
@@ -9,7 +10,7 @@ class SinglePlayerGame extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        
+        grid:[["val","val","val","val","val","val","val"],["Name",2,3,4,5,6,7],["Name",2,3,4,5,6,7],["Name",2,3,4,5,6,7],["Name",2,3,4,5,6,7],["Name",2,3,4,5,6,7],["Name",2,3,4,5,6,7],["Name",2,3,4,5,6,7]]
       }
     }
   
@@ -24,7 +25,7 @@ class SinglePlayerGame extends React.Component {
         return (
             <div>
               <h2>Single Player Game Screen</h2>
-              
+              <Game grids={this.state.grid}/>
             </div>
           );
     }
