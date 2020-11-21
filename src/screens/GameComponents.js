@@ -78,9 +78,9 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[3][0])}
           {this.renderSquare(this.props.rows[3][1])}
           {this.renderSquare(this.props.rows[3][2])}
-          {this.renderSquare(this.props.rows[3][3])}
+          {/* {this.renderSquare(this.props.rows[3][3])}
           {this.renderSquare(this.props.rows[3][4])}
-          {this.renderSquare(this.props.rows[3][5])}
+          {this.renderSquare(this.props.rows[3][5])} */}
           {/* {this.renderSquare(this.props.rows[3][6])} */}
         </div>
         <div className="board-row">
