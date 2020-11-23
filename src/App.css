@@ -122,7 +122,13 @@
   border-style: double;
 }
 
-
+.Leaderboard {
+    width: 756px;
+    height: 400px;
+    /* border: 2px solid green; */
+    display: flex;
+    /* justify-content: center; */
+}
 
 
 
@@ -221,7 +227,7 @@
 
 }
 
-
+.
 
 
 
