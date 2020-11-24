@@ -10,3 +10,7 @@
 .cell-control:hover {
 border: 3px solid #fdd;
 }
+
+.board-row {
+  position: sticky;
+}

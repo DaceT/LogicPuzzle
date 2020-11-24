@@ -4,49 +4,61 @@ import '../App.css';
 
 import * as firebase from 'firebase';
 
-
+// Each square in the grid. Has two states
 class Square extends React.Component {
 
     state = {
-        value:" ",
+        value:".",
         no_clicks:0
     }
 
+    // On click changes each the state of each square. It also updates the userSolution
+    // in singlePlayerBoard.js
     changeSquare = () => {
         if (this.state.no_clicks == 0){
             this.setState({no_clicks:1});
-            this.setState({value:"X"});
+            this.setState({value:"✘"});
+            // console.log(this.props.value, 1);
+            this.props.updateBoard(this.props.value, 0);
         }else if (this.state.no_clicks == 1 ){
             this.setState({no_clicks:2});
-            this.setState({value:"V"});
+            this.setState({value:"✔"});
+            this.props.updateBoard(this.props.value, 2);
         }else{
             this.setState({no_clicks:0});
-            this.setState({value:" "});
+            this.setState({value:"."});
+            this.props.updateBoard(this.props.value, 0);
         }
     }
 
     render() {
         return (
-            <button className="cell-control" onClick={this.changeSquare}>
+            <span><button className="cell-control" onClick={this.changeSquare}>
             {this.state.value}
             {"  "}
             </button>
+            </span>
         );
     }
 }
 
+// The Board. Basically just contains all the squares rendered
 class Board6x6 extends React.Component {
 
-  
+  // This function updates the userSolution in the super state. 
+  // This way, we can easily compare solutions from singlePlayerBoard.js
+  updateBoard = (arr, val) => {
+    this.props.updateGrid(arr, val)
+  }
+
 
   renderSquare(i) {
-    return <Square value={i} />;
+    return <Square value={i} updateBoard={this.updateBoard} />;
   }
 
   render() {
     return (
       <div>
-        
         <div className="board-row">
           {this.renderSquare(this.props.rows[0][0])}
           {this.renderSquare(this.props.rows[0][1])}
@@ -54,7 +66,6 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[0][3])}
           {this.renderSquare(this.props.rows[0][4])}
           {this.renderSquare(this.props.rows[0][5])}
-          {/* {this.renderSquare(this.props.rows[0][6])} */}
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[1][0])}
@@ -63,7 +74,6 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[1][3])}
           {this.renderSquare(this.props.rows[1][4])}
           {this.renderSquare(this.props.rows[1][5])}
-          {/* {this.renderSquare(this.props.rows[1][6])} */}
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[2][0])}
@@ -72,149 +82,25 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[2][3])}
           {this.renderSquare(this.props.rows[2][4])}
           {this.renderSquare(this.props.rows[2][5])}
-          {/* {this.renderSquare(this.props.rows[2][6])} */}
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[3][0])}
           {this.renderSquare(this.props.rows[3][1])}
           {this.renderSquare(this.props.rows[3][2])}
-          {/* {this.renderSquare(this.props.rows[3][3])}
-          {this.renderSquare(this.props.rows[3][4])}
-          {this.renderSquare(this.props.rows[3][5])} */}
-          {/* {this.renderSquare(this.props.rows[3][6])} */}
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[4][0])}
           {this.renderSquare(this.props.rows[4][1])}
           {this.renderSquare(this.props.rows[4][2])}
-          {/* {this.renderSquare(this.props.rows[4][3])} */}
-          {/* {this.renderSquare(this.props.rows[4][4])}
-          {this.renderSquare(this.props.rows[4][5])}
-          {this.renderSquare(this.props.rows[4][6])} */}
         </div>
         <div className="board-row">
           {this.renderSquare(this.props.rows[5][0])}
           {this.renderSquare(this.props.rows[5][1])}
           {this.renderSquare(this.props.rows[5][2])}
-          {/* {this.renderSquare(this.props.rows[5][3])} */}
-          {/* {this.renderSquare(this.props.rows[5][4])}
-          {this.renderSquare(this.props.rows[5][5])}
-          {this.renderSquare(this.props.rows[5][6])} */}
-        </div>
-        <div className="board-row">
-          {/* {this.renderSquare(this.props.rows[6][0])}
-          {this.renderSquare(this.props.rows[6][1])}
-          {this.renderSquare(this.props.rows[6][2])} */}
-          {/* {this.renderSquare(this.props.rows[6][3])} */}
-          {/* {this.renderSquare(this.props.rows[6][4])}
-          {this.renderSquare(this.props.rows[6][5])}
-          {this.renderSquare(this.props.rows[6][6])} */}
         </div>
       </div>
     );
   }
 }
-
-class Board9x9 extends React.Component {
-    renderSquare(i) {
-      return <Square value={i} />;
-    }
   
-    render() {
-      return (
-        <div>
-          <div className="board-row">
-            {this.renderSquare(this.props.rows[0][0])}
-            {this.renderSquare(this.props.rows[0][1])}
-            {this.renderSquare(this.props.rows[0][2])}
-            {this.renderSquare(this.props.rows[0][3])}
-            {this.renderSquare(this.props.rows[0][4])}
-            {this.renderSquare(this.props.rows[0][5])}
-            {this.renderSquare(this.props.rows[0][6])}
-            {this.renderSquare(this.props.rows[0][7])}
-            {this.renderSquare(this.props.rows[0][8])}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(this.props.rows[1][0])}
-            {this.renderSquare(this.props.rows[1][1])}
-            {this.renderSquare(this.props.rows[1][2])}
-            {this.renderSquare(this.props.rows[1][3])}
-            {this.renderSquare(this.props.rows[1][4])}
-            {this.renderSquare(this.props.rows[1][5])}
-            {this.renderSquare(this.props.rows[1][6])}
-            {this.renderSquare(this.props.rows[1][7])}
-            {this.renderSquare(this.props.rows[1][8])}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(this.props.rows[2][0])}
-            {this.renderSquare(this.props.rows[2][1])}
-            {this.renderSquare(this.props.rows[2][2])}
-            {this.renderSquare(this.props.rows[2][3])}
-            {this.renderSquare(this.props.rows[2][4])}
-            {this.renderSquare(this.props.rows[2][5])}
-            {this.renderSquare(this.props.rows[2][6])}
-            {this.renderSquare(this.props.rows[2][7])}
-            {this.renderSquare(this.props.rows[2][8])}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(this.props.rows[3][0])}
-            {this.renderSquare(this.props.rows[3][1])}
-            {this.renderSquare(this.props.rows[3][2])}
-            {this.renderSquare(this.props.rows[3][3])}
-            {this.renderSquare(this.props.rows[3][4])}
-            {this.renderSquare(this.props.rows[3][5])}
-            {this.renderSquare(this.props.rows[3][6])}
-            {this.renderSquare(this.props.rows[3][7])}
-            {this.renderSquare(this.props.rows[3][8])}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(this.props.rows[4][0])}
-            {this.renderSquare(this.props.rows[4][1])}
-            {this.renderSquare(this.props.rows[4][2])}
-            {this.renderSquare(this.props.rows[4][3])}
-            {this.renderSquare(this.props.rows[4][4])}
-            {this.renderSquare(this.props.rows[4][5])}
-            {this.renderSquare(this.props.rows[4][6])}
-            {this.renderSquare(this.props.rows[4][7])}
-            {this.renderSquare(this.props.rows[4][8])}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(this.props.rows[5][0])}
-            {this.renderSquare(this.props.rows[5][1])}
-            {this.renderSquare(this.props.rows[5][2])}
-            {this.renderSquare(this.props.rows[5][3])}
-            {this.renderSquare(this.props.rows[5][4])}
-            {this.renderSquare(this.props.rows[5][5])}
-            {this.renderSquare(this.props.rows[5][6])}
-            {this.renderSquare(this.props.rows[5][7])}
-            {this.renderSquare(this.props.rows[5][8])}
-          </div>
-        </div>
-      );
-    }
-  }
-
-class Game extends React.Component {
-
-    selectBoard = (gridType) => {
-        if (gridType == "Easy"){
-            return <Board6x6 rows={this.props.grids}/>;
-        }
-        return <Board9x9 rows = {this.props.grids} />;
-
-    }
-
-    render() {
-      return (
-        <div>
-          <div>
-            <Board6x6
-              rows={this.props.grids}
-              />
-          </div>
-        </div>
-      );
-    }
-  }
-  
-  export default Game;
+  export default Board6x6;
