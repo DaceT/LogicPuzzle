@@ -47,23 +47,19 @@ class SidebarView extends React.Component {
         style={{ display: "flex", height: "100%", alignItems: 'center', flexDirection: "column" }}
       >
 
-        <div
-          style={{
-            width: "100%",
-            backgroundColor: "#efefef",
-            borderRight: "1px solid #99b",
-            
-          }}
-        >
+        
           <div style={{
             width: "100%",
-            backgroundColor: "red",
+            backgroundColor: "gray",
             borderRight: "1px solid #99b",
             justifyContent: 'center',
-            alignContent: 'center'
+            alignContent: 'center',
+            
           }}>
-            <h1>Hello, Navigation</h1>
-            <div style={{ wordSpacing: 100 }}>
+            <div>
+              <h1>Logic Puzzles</h1>
+            </div>
+            {/* <div style={{ wordSpacing: 100 }}>
               <Link routeName="Home">Home </Link>
 
               <Link routeName="Selector">GameModeSelector </Link>
@@ -72,15 +68,14 @@ class SidebarView extends React.Component {
 
               <Link routeName="Leaderboard" params={{ name: "brent" }}>Leaderboard </Link>
 
-              <Link routeName="DataTesting" params={{ name: "brent" }}>DataTesting </Link>
+              {/* <Link routeName="DataTesting" params={{ name: "brent" }}>DataTesting </Link> 
 
-            </div>
+            </div> */}
           </div>
 
 
 
 
-        </div>
         <div>
           <SceneView
             component={descriptor.getComponent()}
@@ -106,4 +101,6 @@ const AppNavigator = createNavigator(
 
 const App = createBrowserApp(AppNavigator);
 
+
 export default App;
+

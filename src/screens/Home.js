@@ -1,5 +1,7 @@
 import React from 'react';
-import { createBrowserApp, Link } from "@react-navigation/web";
+import { Link } from "@react-navigation/web";
+import { Button } from 'react-bootstrap';
+import App from '../App';
 
 
 
@@ -13,9 +15,7 @@ class Home extends React.Component {
       }
     }
   
-    async componentDidMount() {
-  
-    }
+   
   
    
   
@@ -24,7 +24,7 @@ class Home extends React.Component {
         return (
             <div>
               <h2>Home Screen</h2>
-              
+              <Link routeName="SinglePlayer" params={{ name: "jamie" }}>Game </Link>
             </div>
           );
     }

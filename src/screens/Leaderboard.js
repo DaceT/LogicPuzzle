@@ -1,6 +1,9 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid'
+import { Link } from "@react-navigation/web";
 import '../App.css';
+import { Button } from 'react-bootstrap';
+import App from '../App';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -56,9 +59,19 @@ class Leaderboard extends React.Component {
 
   render() {
     return (
-      <div className={"Leaderboard"}>
-          <DataGrid rows={rows} columns={columns} pageSize={5} />
+      <div>
+
+        <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
+          <Button variant="outline-secondary">
+            <Link routeName="Home" params={{ name: "jamie" }}>Home</Link>
+          </Button>
         </div>
+
+        <div className={"Leaderboard"}>
+        <DataGrid rows={rows} columns={columns} pageSize={5} />
+      </div>
+      </div>
+      
 
     );
   }
