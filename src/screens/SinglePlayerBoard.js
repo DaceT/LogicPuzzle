@@ -6,6 +6,7 @@ import Board6x6 from './GameComponents';
 import '../App.css';
 import { Button } from 'react-bootstrap';
 import App from '../App';
+import { navigate } from '@react-navigation/core/lib/commonjs/NavigationActions';
 
 
 
@@ -87,12 +88,15 @@ class SinglePlayerGame extends React.Component {
         if (this.state.userSolution[x][y] != this.state.solution[x][y]) {
           this.setState({ isPuzzleCorrect: false });
           console.log("Your puzzle is wrong");
+          alert("Part of your puzzle is incorrect.")
           return;
         }
       }
     }
     this.setState({ isPuzzleCorrect: true });
+    alert("Your puzzle is correct.")
     console.log("Your puzzle is correct");
+    window.location.href = "src/screens/Home.js"
     return;
   }
 

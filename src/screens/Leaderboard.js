@@ -79,16 +79,16 @@ class Leaderboard extends React.Component {
             <Link routeName="Home" params={{ name: "jamie" }}>Home</Link>
           </Button>
         </div>
-<div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-        <h1>Leaderboards</h1>
-        
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <h1>Leaderboards</h1>
 
-        {this.state.leaderboard != undefined && <div className={"Leaderboard"}>
-          <DataGrid rows={rows} columns={columns} pageSize={5} key='name' />
-        </div>}
+
+          {this.state.leaderboard != undefined && <div className={"Leaderboard"}>
+            <DataGrid rows={rows} columns={columns} pageSize={5} key='name' />
+          </div>}
+        </div>
       </div>
-      </div>
-      
+
 
 
     );
