@@ -22,7 +22,8 @@ class SinglePlayerGame extends React.Component {
       [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5]],
       [[4, 0], [4, 1], [4, 2], [4, 3], [4, 4], [4, 5]],
       [[5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5]]],
-      isPuzzleCorrect: false
+      isPuzzleCorrect: false,
+      size: '3x3',
     }
     this.ref = firebase.firestore().collection('eliminationgrids');
   }
@@ -83,6 +84,7 @@ class SinglePlayerGame extends React.Component {
   // of the users status (correct or wrong)
   // TODO : Nabil
   checkPuzzle = () => {
+    let score = 0;
     for (let x = 0; x < this.state.userSolution.length; x++) {
       for (let y = 0; y < this.state.userSolution[0].length; y++) {
         if (this.state.userSolution[x][y] != this.state.solution[x][y]) {
@@ -91,12 +93,30 @@ class SinglePlayerGame extends React.Component {
           alert("Part of your puzzle is incorrect.")
           return;
         }
+        score++;
       }
     }
+    //Add score to user document and leaderboard collection
+    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection(this.state.size).doc('868NQbaH8SYm1yGnLkxc').set({
+      score: score,
+    })
+    
+
+
+
+    firebase.firestore().collection('leaderboard').doc(this.state.size).collection('names-ages-birthdays').doc().set({
+      profile: [
+      {name: "user's name",
+      email: "user's email",
+      score: score,
+      id: firebase.auth().currentUser.uid }]
+    })
+    
+
     this.setState({ isPuzzleCorrect: true });
     alert("Your puzzle is correct.")
     console.log("Your puzzle is correct");
-    window.location.href = "src/screens/Home.js"
+    window.location.href = "src/screens/Home.js" //navigate home after select puzzle is submitted
     return;
   }
 

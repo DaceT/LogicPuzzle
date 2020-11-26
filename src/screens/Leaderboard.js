@@ -41,12 +41,12 @@ class Leaderboard extends React.Component {
     this.unsubscribe = this.ref.onSnapshot(async (querySnapshot) => {
       var leaderboardArray = [];
       querySnapshot.forEach((doc) => {
-        console.log(doc.data().fireID.name)
+        // console.log("\'" + counter + "\'")
         leaderboardArray.push({
-          name: doc.data().fireID.name,
-          email: doc.data().fireID.email,
-          score: doc.data().fireID.score,
-          id: '1sef3' //swap with firebase ID         
+          name: doc.data().profile.name,
+          email: doc.data().profile.email,
+          score: doc.data().profile.score,
+          id: doc.data().profile.id, //swap with firebase ID         
         })
       })
       console.log(leaderboardArray)
