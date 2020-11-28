@@ -54,7 +54,10 @@ class Leaderboard extends React.Component {
     })
   }
 
+deleteScore = () => {
 
+  this.ref.doc(firebase.auth().currentUser.uid).delete();
+}
 
 
   render() {
@@ -75,6 +78,13 @@ class Leaderboard extends React.Component {
             <DataGrid rows={rows} columns={columns} pageSize={5} sortingOrder={['desc', 'asc']} sortModel={sortModel} />
           </div>}
         </div>
+
+        <div>
+          <Button variant="contained" color="primary" onClick={() => {
+            alert("delete score"); this.deleteScore();
+          }}> Delete leaderboard score  </Button>
+        </div>
+
       </div>
 
 

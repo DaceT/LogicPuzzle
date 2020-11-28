@@ -17,11 +17,11 @@ class Home extends React.Component {
   }
 
   async signInLogic() {
-    if(googleSignIn() == true) {
-      this.setState({signedIn: true})
+    if (googleSignIn() == true) {
+      this.setState({ signedIn: true })
       return true
     } else {
-      this.setState({signedIn: false})
+      this.setState({ signedIn: false })
       return false
     }
   }
@@ -41,7 +41,7 @@ class Home extends React.Component {
 
         {this.state.signedIn == false && <div>
           <Button variant="contained" color="primary" onClick={() => {
-            this.signInLogic().then((value) => { console.log(value)})
+            this.signInLogic().then((value) => { console.log(value) })
           }}> Sign-in with Google </Button>
         </div>}
 
