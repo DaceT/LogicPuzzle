@@ -36,17 +36,17 @@ class Home extends React.Component {
 
         <div>
           <h2>Home Screen</h2>
-          {this.state.signedIn == true && <Link routeName="SinglePlayer" params={{ name: "jamie" }}>Game </Link>}
+          {this.state.signedIn == true && <Link routeName="SinglePlayer" params={{ name: "jamie" }}>Play Game</Link>}
         </div>
 
         {this.state.signedIn == false && <div>
           <Button variant="contained" color="primary" onClick={() => {
             this.signInLogic().then((value) => { console.log(value)})
-          }}> SignIn with Google </Button>
+          }}> Sign-in with Google </Button>
         </div>}
 
         {this.state.signedIn == true && <div>
-          <p>you should see this message if you are signed in</p>
+          <p>You have successfully signed in with a Google account</p>
         </div>}
       </div>
 

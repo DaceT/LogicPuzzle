@@ -27,6 +27,7 @@ function googleSignIn() {
         firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
             name: promptResponse,
             email: email,
+            id: firebase.auth().currentUser.uid,
         })
         
     });

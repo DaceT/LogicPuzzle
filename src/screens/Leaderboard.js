@@ -12,18 +12,12 @@ const columns = [
   { field: 'score', headerName: 'score', width: 130 },
 ];
 
-//include firebase ID, users name/email, user score
-// var rows = [
-//   { id: 1, lastName: 'Null Example', firstName: null, age: null },
-//   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-//   { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-//   { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-//   { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 43 },
-//   { id: 6, lastName: 'Melisandre', firstName: "last name", age: 150 },
-//   { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-//   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-//   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-// ];
+const sortModel = [
+  {
+    field: 'score',
+    sort: 'desc',
+  },
+];
 
 class Leaderboard extends React.Component {
 
@@ -41,20 +35,14 @@ class Leaderboard extends React.Component {
     this.unsubscribe = this.ref.onSnapshot(async (querySnapshot) => {
       var leaderboardArray = [];
       querySnapshot.forEach((doc) => {
-        // console.log("\'" + counter + "\'")
         leaderboardArray.push({
-          name: doc.data().profile.name,
-          email: doc.data().profile.email,
-          score: doc.data().profile.score,
-          id: doc.data().profile.id, //swap with firebase ID         
+          name: doc.data().profile[0].name,
+          email: doc.data().profile[0].email,
+          score: doc.data().profile[0].score,
+          id: doc.data().profile[0].id,         
         })
       })
       console.log(leaderboardArray)
-      // var mapToArray = [];
-      // for (let i = 1; i < puzzleArray[0].size; i++) {
-      //   mapToArray.push(puzzleArray[0].solution[i] + " ");
-      // }
-      // console.log(mapToArray);
 
       this.setState({
         leaderboard: leaderboardArray,
@@ -84,7 +72,7 @@ class Leaderboard extends React.Component {
 
 
           {this.state.leaderboard != undefined && <div className={"Leaderboard"}>
-            <DataGrid rows={rows} columns={columns} pageSize={5} key='name' />
+            <DataGrid rows={rows} columns={columns} pageSize={5} sortingOrder={['desc', 'asc']} sortModel={sortModel} />
           </div>}
         </div>
       </div>
@@ -99,5 +87,6 @@ class Leaderboard extends React.Component {
 
 
 export default Leaderboard;
+
 
 

@@ -26,6 +26,7 @@ class SinglePlayerGame extends React.Component {
       size: '3x3',
     }
     this.ref = firebase.firestore().collection('eliminationgrids');
+    this.ref2 = firebase.firestore().collection('users').where('id', '==', firebase.auth().currentUser.uid);
   }
 
   async componentDidMount() {
@@ -77,178 +78,203 @@ class SinglePlayerGame extends React.Component {
 
       this.unsubscribe();
     })
+
+    this.unsubscribe2 = this.ref2.onSnapshot(async (querySnapshot) => {
+      var userArray = [];
+      querySnapshot.forEach((doc) => {
+        userArray.push({
+          name: doc.data().name,
+          email: doc.data().email,
+        })
+      })
+      console.log(userArray);
+      this.setState({user: userArray})
+    } )
   }
 
-  // loops through current user solution, and compares with the actual solution
-  // currently console.logs whether it is correct or wrong. Should show a dialog box 
-  // of the users status (correct or wrong)
-  // TODO : Nabil
-  checkPuzzle = () => {
-    let score = 0;
-    for (let x = 0; x < this.state.userSolution.length; x++) {
-      for (let y = 0; y < this.state.userSolution[0].length; y++) {
-        if (this.state.userSolution[x][y] != this.state.solution[x][y]) {
-          this.setState({ isPuzzleCorrect: false });
-          console.log("Your puzzle is wrong");
-          alert("Part of your puzzle is incorrect.")
-          return;
-        }
-        score++;
+
+
+
+
+
+// loops through current user solution, and compares with the actual solution
+// currently console.logs whether it is correct or wrong. Should show a dialog box 
+// of the users status (correct or wrong)
+// TODO : Nabil
+checkPuzzle = () => {
+  let score = 0;
+  for (let x = 0; x < this.state.userSolution.length; x++) {
+    for (let y = 0; y < this.state.userSolution[0].length; y++) {
+      if (this.state.userSolution[x][y] != this.state.solution[x][y]) {
+        this.setState({ isPuzzleCorrect: false });
+        console.log("Your puzzle is wrong");
+        // alert("Part of your puzzle is incorrect.")
+        score--;
       }
+      score++;
     }
-    //Add score to user document and leaderboard collection
-    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection(this.state.size).doc('868NQbaH8SYm1yGnLkxc').set({
-      score: score,
-    })
-    
+  }
+  //Add score to user document and leaderboard collection
+
+
+  firebase.firestore().collection('leaderboard').doc(this.state.size).collection('names-ages-birthdays').doc(firebase.auth().currentUser.uid).set({
+    profile: [
+      {
+        name: this.state.user[0].name,
+        email: this.state.user[0].email,
+        score: score,
+        id: firebase.auth().currentUser.uid
+      }]
+  })
 
 
 
-    firebase.firestore().collection('leaderboard').doc(this.state.size).collection('names-ages-birthdays').doc().set({
-      profile: [
-      {name: "user's name",
-      email: "user's email",
-      score: score,
-      id: firebase.auth().currentUser.uid }]
-    })
-    
 
-    this.setState({ isPuzzleCorrect: true });
+
+
+
+
+
+  this.setState({ isPuzzleCorrect: true });
+  if(score == 36) {
     alert("Your puzzle is correct.")
-    console.log("Your puzzle is correct");
-    window.location.href = "src/screens/Home.js" //navigate home after select puzzle is submitted
-    return;
+  } else {
+    alert("Part of your puzzle is incorrect.")
   }
+  console.log("Your puzzle is correct");
+  // window.location.href = "src/screens/Home.js" //navigate home after select puzzle is submitted
+  return;
+}
 
-  // updates the userSolution onClick of each square
-  updateGrid = (arr, val) => {
-    const tempGrid = this.state.userSolution;
-    tempGrid[arr[0]][arr[1]] = val;
-    this.setState({ userSolution: tempGrid });
-  }
+// updates the userSolution onClick of each square
+updateGrid = (arr, val) => {
+  const tempGrid = this.state.userSolution;
+  tempGrid[arr[0]][arr[1]] = val;
+  this.setState({ userSolution: tempGrid });
+}
 
 
-  render() {
-    return (
-      <div>
+render() {
+  return (
+    <div>
 
-        <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
-          <Button variant="outline-secondary">
+      <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
+        <Button variant="outline-secondary">
           <Link routeName="Leaderboard" params={{ name: "jamie" }}>Leaderboard</Link>
-          </Button>
-        </div>
+        </Button>
+      </div>
 
-        <div className={"column"}>
+      <div className={"column"}>
 
-          {/* <div style={{ padding: 40 }} /> */}
-          {this.state.puzzle != undefined && <div>
-            <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
-
-
-            {/* <div style={{ marginTop: 20 }} /> */}
-
-            <div className={"right2"}>
-              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[0]}</div>
-              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[1]}</div>
-              <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[2]}</div>
-            </div>
-
-          </div>}
-
-          <div style={{ paddingLeft: 80 }} />
-
-          {this.state.puzzle != undefined && <div>
-            <p className={"h-text2"}>{this.state.puzzle[0].cat4}</p>
-            <div style={{ marginBottom: 15 }} />
-
-            <div className={"right2"}>
-              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[0]}</div>
-              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[1]}</div>
-              <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[2]}</div>
-            </div>
-
-          </div>}
-
-        </div>
-
-        <div style={{ paddingTop: 10 }} />
-
-        <div className={"row2"}>
-          <div>
-            <div style={{ paddingTop: 51 }} />
-
-            {this.state.puzzle != undefined && <div className={"row"}>
-              <div class="left">
-                <p className={"h-text"}>{this.state.puzzle[0].cat2}</p>
-              </div>
-
-              <div className={"right"}>
-                <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[0]}</div>
-                <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[1]}</div>
-                <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[2]}</div>
-              </div>
-
-            </div>}
-
-            <div style={{ paddingTop: 53 }} />
-
-            {this.state.puzzle != undefined && <div className={"row"}>
-              <div className="left">
-                <p className={"h-text"}>{this.state.puzzle[0].cat1}</p>
-              </div>
-
-              <div className={"right"}>
-                <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[0]}</div>
-                <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[1]}</div>
-                <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[2]}</div>
-              </div>
-
-            </div>}
-
-          </div>
-
-
-          <div style={{ paddingLeft: 25 }} />
-          <div style={{ paddingTop: 50 }}>
-            <Board6x6 rows={this.state.grid} updateGrid={this.updateGrid} />
-
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-
+        {/* <div style={{ padding: 40 }} /> */}
         {this.state.puzzle != undefined && <div>
+          <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
 
-          <div class="left">
-            <p className={"h-hints"}>Hints</p>
+
+          {/* <div style={{ marginTop: 20 }} /> */}
+
+          <div className={"right2"}>
+            <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[0]}</div>
+            <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[1]}</div>
+            <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[2]}</div>
           </div>
 
-          <div style={{ paddingTop: 20 }} />
-
-          <div className={"Hints"}> 1.) {this.state.puzzle[0].hints[0]}</div>
-          <div className={"Hints"}> 2.) {this.state.puzzle[0].hints[1]}</div>
-          <div className={"Hints"}> 3.) {this.state.puzzle[0].hints[2]}</div>
-          <div className={"Hints"}> 4.) {this.state.puzzle[0].hints[3]}</div>
         </div>}
 
+        <div style={{ paddingLeft: 80 }} />
+
+        {this.state.puzzle != undefined && <div>
+          <p className={"h-text2"}>{this.state.puzzle[0].cat4}</p>
+          <div style={{ marginBottom: 15 }} />
+
+          <div className={"right2"}>
+            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[0]}</div>
+            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[1]}</div>
+            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[2]}</div>
+          </div>
+
+        </div>}
+
+      </div>
+
+      <div style={{ paddingTop: 10 }} />
+
+      <div className={"row2"}>
+        <div>
+          <div style={{ paddingTop: 51 }} />
+
+          {this.state.puzzle != undefined && <div className={"row"}>
+            <div class="left">
+              <p className={"h-text"}>{this.state.puzzle[0].cat2}</p>
+            </div>
+
+            <div className={"right"}>
+              <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[0]}</div>
+              <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[1]}</div>
+              <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[2]}</div>
+            </div>
+
+          </div>}
+
+          <div style={{ paddingTop: 53 }} />
+
+          {this.state.puzzle != undefined && <div className={"row"}>
+            <div className="left">
+              <p className={"h-text"}>{this.state.puzzle[0].cat1}</p>
+            </div>
+
+            <div className={"right"}>
+              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[0]}</div>
+              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[1]}</div>
+              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[2]}</div>
+            </div>
+
+          </div>}
+
+        </div>
 
 
-        <Button variant="outline-secondary" onClick={this.checkPuzzle}>Submit Puzzle</Button>
+        <div style={{ paddingLeft: 25 }} />
+        <div style={{ paddingTop: 50 }}>
+          <Board6x6 rows={this.state.grid} updateGrid={this.updateGrid} />
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
       </div>
 
 
-    );
-  }
+      {this.state.puzzle != undefined && <div>
+
+        <div class="left">
+          <p className={"h-hints"}>Hints</p>
+        </div>
+
+        <div style={{ paddingTop: 20 }} />
+
+        <div className={"Hints"}> 1.) {this.state.puzzle[0].hints[0]}</div>
+        <div className={"Hints"}> 2.) {this.state.puzzle[0].hints[1]}</div>
+        <div className={"Hints"}> 3.) {this.state.puzzle[0].hints[2]}</div>
+        <div className={"Hints"}> 4.) {this.state.puzzle[0].hints[3]}</div>
+      </div>}
+
+
+
+      <Button variant="outline-secondary" onClick={this.checkPuzzle}>Submit Puzzle</Button>
+    </div>
+
+
+  );
+}
 
 }
 
