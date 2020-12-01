@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style-login.css">
+    <title>Log In</title>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="form-box">
+        <div class="button-box">
+          <div id="btn"></div>
+          <button type="button" class="toggle-btn" onclick="signin()">Sign In</button>
+          <button type="button" class="toggle-btn" onclick="signup()">Sign Up</button>
+        </div>
+        <div class="google-box">
+          <center>
+                <button type="button" class="submit-btn" onclick="GoogleLogin()"> Sign in with Google</button>
+          </center>
+        </div>
+        <form id="signin" class="input-group">
+            <input type="text" class="input-field" placeholder="User Name" required>
+            <input type="text" class="input-field" placeholder="Enter Password" required>
+            <input type="checkbox" class="chech-box"><span>Remember Password</span>
+            <button type="submit" class="submit-btn">Log in</button>
+        </form>
+        <form id="signup" class="input-group">
+          <input type="text" class="input-field" placeholder="User Name" required>
+          <input type="email" class="input-field" placeholder="Email" required>
+          <input type="text" class="input-field" placeholder="Enter Password" required>
+          <input type="checkbox" class="chech-box"><span>I agree to the terms and conditions</span>
+          <button type="submit" class="submit-btn">Sign Up</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      var x = document.getElementById("signin");
+      var y = document.getElementById("signup");
+      var z = document.getElementById("btn");
+
+      function signup(){
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+      }
+      function signin(){
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0";
+    }
+    </script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyBTTw-Cn5eViQozEedSNU_ZsjSvi271_og",
+        authDomain: "logicpuzzles-fedc2.firebaseapp.com",
+        databaseURL: "https://logicpuzzles-fedc2.firebaseio.com",
+        projectId: "logicpuzzles-fedc2",
+        storageBucket: "logicpuzzles-fedc2.appspot.com",
+        messagingSenderId: "781387173374",
+        appId: "1:781387173374:web:ef15b3ea3c49d0ce4784af",
+        measurementId: "G-BN2SLBEFGV"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+
+      GoogleLogin=()=>{
+        //create google provider object
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        //Login with popup window
+
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          console.log(result);
+          console.log("Success.. Google Account Linked");
+        }).catch(function(error) {
+          console.log(error);
+          console.log("Failed to do");
+        });
+
+      }
+    </script>
+
+  </body>
+</html>
