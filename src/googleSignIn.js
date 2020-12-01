@@ -23,7 +23,10 @@ function googleSignIn() {
         // ...
     }).then((email) => {
         let promptResponse = prompt("Please enter your name.")
-
+        if(promptResponse == undefined) {
+            console.log("Name not entered")
+            let promptResponse = null;
+        }
         firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
             name: promptResponse,
             email: email,

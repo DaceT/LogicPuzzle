@@ -174,14 +174,14 @@ render() {
         </Button>
       </div>
 
-      <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
-          <InputLabel htmlFor="select">Load Challenge</InputLabel>
+      {firebase.auth().currentUser.uid == 'JKzw4RU0uOY8KwmeTMVtjsie1JK2' || firebase.auth().currentUser.uid == 'NK6ud6z61vSBxiwKhnk824I9PVE2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
+          <InputLabel htmlFor="select">Load Puzzle</InputLabel>
               <NativeSelect id="select" onChange={async(value) => { console.log(value.target.value); this.setState({selector: value.target.value, title: titles[value.target.value]}); 
               alert(this.state.selector); alert(this.state.title); await this.resetUserSolution() }}>
                 <option value="0">1 </option>
                 <option value="1">2 </option>
               </NativeSelect>
-            </div>
+            </div>}
 
       <div className={"column"}>
 
