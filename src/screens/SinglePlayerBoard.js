@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserApp, Link } from "@react-navigation/web";
+import { InputLabel, NativeSelect } from '@material-ui/core';
 import * as firebase from 'firebase';
 import Game from './GameComponents';
 import Board6x6 from './GameComponents';
@@ -8,7 +9,7 @@ import { Button } from 'react-bootstrap';
 import App from '../App';
 import { navigate } from '@react-navigation/core/lib/commonjs/NavigationActions';
 
-
+var titles = ['names-ages-birthdays', 'ages-names-superheroes']
 
 
 class SinglePlayerGame extends React.Component {
@@ -24,6 +25,8 @@ class SinglePlayerGame extends React.Component {
       [[5, 0], [5, 1], [5, 2], [5, 3], [5, 4], [5, 5]]],
       isPuzzleCorrect: false,
       size: '3x3',
+      selector: 0,
+      title: 'names-ages-birthdays',
     }
     this.ref = firebase.firestore().collection('eliminationgrids');
     this.ref2 = firebase.firestore().collection('users').where('id', '==', firebase.auth().currentUser.uid);
@@ -48,7 +51,8 @@ class SinglePlayerGame extends React.Component {
           size: doc.data().size,
         })
       })
-      console.log(puzzleArray[0].mapSol);
+      console.log(puzzleArray[this.state.selector].mapSol);
+      console.log(puzzleArray);
       var tempSolution = [[0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0],
@@ -57,9 +61,10 @@ class SinglePlayerGame extends React.Component {
       [0, 0, 0, 0, 0, 0]
       ];
 
-      for (var arr in puzzleArray[0].mapSol) {
-        console.log(puzzleArray[0].mapSol[arr][0], puzzleArray[0].mapSol[arr][1]);
-        tempSolution[puzzleArray[0].mapSol[arr][0]][puzzleArray[0].mapSol[arr][1]] = 2;
+      for (var arr in puzzleArray[this.state.selector].mapSol) {
+        console.log(puzzleArray[this.state.selector].mapSol[arr][0], puzzleArray[this.state.selector].mapSol[arr][1]);
+        console.log(puzzleArray[1].mapSol[arr][0], puzzleArray[1].mapSol[arr][1]);
+        tempSolution[puzzleArray[this.state.selector].mapSol[arr][0]][puzzleArray[this.state.selector].mapSol[arr][1]] = 2;
       }
 
       // set the new solution in state
@@ -93,7 +98,11 @@ class SinglePlayerGame extends React.Component {
   }
 
 
+resetUserSolution = (async) => {
+  
+  this.componentDidMount();
 
+}
 
 
 
@@ -103,6 +112,8 @@ class SinglePlayerGame extends React.Component {
 // TODO : Nabil
 checkPuzzle = () => {
   let score = 0;
+  console.log(this.state.userSolution)
+  console.log(this.state.solution)
   for (let x = 0; x < this.state.userSolution.length; x++) {
     for (let y = 0; y < this.state.userSolution[0].length; y++) {
       if (this.state.userSolution[x][y] != this.state.solution[x][y]) {
@@ -117,7 +128,7 @@ checkPuzzle = () => {
   //Add score to user document and leaderboard collection
 
 
-  firebase.firestore().collection('leaderboard').doc(this.state.size).collection('names-ages-birthdays').doc(firebase.auth().currentUser.uid).set({
+  firebase.firestore().collection('leaderboard').doc(this.state.size).collection(this.state.title).doc(firebase.auth().currentUser.uid).set({
     profile: [
       {
         name: this.state.user[0].name,
@@ -141,7 +152,6 @@ checkPuzzle = () => {
   } else {
     alert("Part of your puzzle is incorrect.")
   }
-  console.log("Your puzzle is correct");
   // window.location.href = "src/screens/Home.js" //navigate home after select puzzle is submitted
   return;
 }
@@ -164,19 +174,28 @@ render() {
         </Button>
       </div>
 
+      <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
+          <InputLabel htmlFor="select">Load Challenge</InputLabel>
+              <NativeSelect id="select" onChange={async(value) => { console.log(value.target.value); this.setState({selector: value.target.value, title: titles[value.target.value]}); 
+              alert(this.state.selector); alert(this.state.title); await this.resetUserSolution() }}>
+                <option value="0">1 </option>
+                <option value="1">2 </option>
+              </NativeSelect>
+            </div>
+
       <div className={"column"}>
 
         {/* <div style={{ padding: 40 }} /> */}
         {this.state.puzzle != undefined && <div>
-          <p className={"h-text2"}>{this.state.puzzle[0].cat3}</p>
+          <p className={"h-text2"}>{this.state.puzzle[this.state.selector].cat3}</p>
 
 
           {/* <div style={{ marginTop: 20 }} /> */}
 
           <div className={"right2"}>
-            <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[0]}</div>
-            <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[1]}</div>
-            <div className={"Board-Options-Ages"}> {this.state.puzzle[0].cat3op[2]}</div>
+            <div className={"Board-Options-Ages"}> {this.state.puzzle[this.state.selector].cat3op[0]}</div>
+            <div className={"Board-Options-Ages"}> {this.state.puzzle[this.state.selector].cat3op[1]}</div>
+            <div className={"Board-Options-Ages"}> {this.state.puzzle[this.state.selector].cat3op[2]}</div>
           </div>
 
         </div>}
@@ -184,13 +203,13 @@ render() {
         <div style={{ paddingLeft: 80 }} />
 
         {this.state.puzzle != undefined && <div>
-          <p className={"h-text2"}>{this.state.puzzle[0].cat4}</p>
+          <p className={"h-text2"}>{this.state.puzzle[this.state.selector].cat4}</p>
           <div style={{ marginBottom: 15 }} />
 
           <div className={"right2"}>
-            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[0]}</div>
-            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[1]}</div>
-            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[0].cat4op[2]}</div>
+            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[this.state.selector].cat4op[0]}</div>
+            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[this.state.selector].cat4op[1]}</div>
+            <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[this.state.selector].cat4op[2]}</div>
           </div>
 
         </div>}
@@ -205,13 +224,13 @@ render() {
 
           {this.state.puzzle != undefined && <div className={"row"}>
             <div class="left">
-              <p className={"h-text"}>{this.state.puzzle[0].cat2}</p>
+              <p className={"h-text"}>{this.state.puzzle[this.state.selector].cat2}</p>
             </div>
 
             <div className={"right"}>
-              <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[0]}</div>
-              <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[1]}</div>
-              <div className={"Board-Options-Names"}> {this.state.puzzle[0].cat2op[2]}</div>
+              <div className={"Board-Options-Names"}> {this.state.puzzle[this.state.selector].cat2op[0]}</div>
+              <div className={"Board-Options-Names"}> {this.state.puzzle[this.state.selector].cat2op[1]}</div>
+              <div className={"Board-Options-Names"}> {this.state.puzzle[this.state.selector].cat2op[2]}</div>
             </div>
 
           </div>}
@@ -220,13 +239,13 @@ render() {
 
           {this.state.puzzle != undefined && <div className={"row"}>
             <div className="left">
-              <p className={"h-text"}>{this.state.puzzle[0].cat1}</p>
+              <p className={"h-text"}>{this.state.puzzle[this.state.selector].cat1}</p>
             </div>
 
             <div className={"right"}>
-              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[0]}</div>
-              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[1]}</div>
-              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[0].cat1op[2]}</div>
+              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[this.state.selector].cat1op[0]}</div>
+              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[this.state.selector].cat1op[1]}</div>
+              <div className={"Board-Options-Birthdays1"}> {this.state.puzzle[this.state.selector].cat1op[2]}</div>
             </div>
 
           </div>}
@@ -261,10 +280,10 @@ render() {
 
         <div style={{ paddingTop: 20 }} />
 
-        <div className={"Hints"}> 1.) {this.state.puzzle[0].hints[0]}</div>
-        <div className={"Hints"}> 2.) {this.state.puzzle[0].hints[1]}</div>
-        <div className={"Hints"}> 3.) {this.state.puzzle[0].hints[2]}</div>
-        <div className={"Hints"}> 4.) {this.state.puzzle[0].hints[3]}</div>
+        <div className={"Hints"}> 1.) {this.state.puzzle[this.state.selector].hints[0]}</div>
+        <div className={"Hints"}> 2.) {this.state.puzzle[this.state.selector].hints[1]}</div>
+        <div className={"Hints"}> 3.) {this.state.puzzle[this.state.selector].hints[2]}</div>
+        <div className={"Hints"}> 4.) {this.state.puzzle[this.state.selector].hints[3]}</div>
       </div>}
 
 
