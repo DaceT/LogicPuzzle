@@ -7,7 +7,6 @@ import Board6x6 from './GameComponents';
 import '../App.css';
 import { Button } from 'react-bootstrap';
 import App from '../App';
-import { navigate } from '@react-navigation/core/lib/commonjs/NavigationActions';
 
 var titles = ['names-ages-birthdays', 'ages-names-superheroes']
 
@@ -54,12 +53,12 @@ class SinglePlayerGame extends React.Component {
       console.log(puzzleArray[this.state.selector].mapSol);
       console.log(puzzleArray);
       var tempSolution = [[0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0]
-      ];
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0]
+                          ];
 
       for (var arr in puzzleArray[this.state.selector].mapSol) {
         console.log(puzzleArray[this.state.selector].mapSol[arr][0], puzzleArray[this.state.selector].mapSol[arr][1]);
@@ -71,13 +70,13 @@ class SinglePlayerGame extends React.Component {
       this.setState({
         puzzle: puzzleArray,
         solution: tempSolution,
-        userSolution: [[0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0]
-        ]
+        userSolution:[[0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0]
+                      ]
 
       })
 
