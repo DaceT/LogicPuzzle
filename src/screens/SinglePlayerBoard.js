@@ -168,9 +168,12 @@ render() {
     <div>
 
       <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
-        <Button variant="outline-secondary">
+        <Button variant="outline-primary">
           <Link routeName="Leaderboard" params={{ name: "jamie" }}>Leaderboard</Link>
         </Button>
+      </div>
+      <div className="announce">
+        Use the hints provided below to answer the puzzle!
       </div>
 
       {firebase.auth().currentUser.uid == 'JKzw4RU0uOY8KwmeTMVtjsie1JK2' || firebase.auth().currentUser.uid == 'NK6ud6z61vSBxiwKhnk824I9PVE2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
