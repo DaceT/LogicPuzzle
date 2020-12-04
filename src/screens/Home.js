@@ -4,8 +4,8 @@ import { Button } from 'react-bootstrap';
 import App from '../App';
 import googleSignIn from '../googleSignIn';
 import * as firebase from 'firebase';
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import TextLoop from "react-text-loop"; 
 
 class Home extends React.Component {
 
@@ -27,27 +27,40 @@ class Home extends React.Component {
   }
 
 
-
+  getUserName = () => {
+    if (firebase.auth().currentUser){
+      return firebase.auth().currentUser.displayName;
+    }
+  }
 
   render() {
     console.log(this.state.signedIn)
     return (
-      <div>
+      <div className= "announce">
 
-        <div>
-          <h2>Home Screen</h2>
-          {this.state.signedIn == true && <Link routeName="SinglePlayer" params={{ name: "jamie" }}>Play Game</Link>}
+        <div >
+            <h1 className="announce">
+              Play {' '}
+              <TextLoop>
+                <span>Logic</span>
+                <span>Smart</span>
+                <span>Intelligent</span>
+              </TextLoop>{" "}
+            </h1>
+          {this.state.signedIn == true && <Link routeName="SinglePlayer" params={{ name: "jamie" }}><Button variant="outline-secondary">Play Game</Button></Link>}
         </div>
 
+        {this.state.signedIn == true && <div>
+          <p>Welcome {this.getUserName}</p>
+        </div>}
+
         {this.state.signedIn == false && <div>
-          <Button variant="contained" color="primary" onClick={() => {
+          <Button variant="outline-secondary" textAlign="center" onClick={() => {
             this.signInLogic().then((value) => { console.log(value) })
           }}> Sign-in with Google </Button>
         </div>}
 
-        {this.state.signedIn == true && <div>
-          <p>You have successfully signed in with a Google account</p>
-        </div>}
+        
       </div>
 
     );

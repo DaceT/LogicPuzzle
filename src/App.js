@@ -4,12 +4,17 @@ import {
   SwitchRouter,
   SceneView
 } from "@react-navigation/core";
+import './App.css';
 import { createBrowserApp, Link } from "@react-navigation/web";
 import Home from './screens/Home';
 import Selector from './screens/GameSelector';
 import SinglePlayer from './screens/SinglePlayerBoard';
 import Leaderboard from './screens/Leaderboard';
 import DataTesting from './screens/DataTesting';
+import Header from './screens/layout/Header';
+import {Navbar, Nav} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 window.__DEV__ = true;
 
 
@@ -43,44 +48,31 @@ class SidebarView extends React.Component {
     const activeKey = navigation.state.routes[navigation.state.index].key;
     const descriptor = descriptors[activeKey];
     return (
-      <div
-        style={{ display: "flex", height: "100%", alignItems: 'center', flexDirection: "column" }}
-      >
-
-        
-          <div style={{
-            width: "100%",
-            backgroundColor: "gray",
-            borderRight: "1px solid #99b",
-            justifyContent: 'center',
-            alignContent: 'center',
-            
-          }}>
-            <div>
-              <h1>Logic Puzzles</h1>
+      <div className="App">
+          <div style={{ display: "flex", height: "100%", alignItems: 'center', flexDirection: "column" }}>
+            <div style={{
+              width: "100%",
+              backgroundColor: "#ff91a4",
+              borderRight: "1px solid #99b",
+              justifyContent: 'center',
+              alignContent: 'center',
+              color: "#fff", fontWeight: "100", fontSize: "1.5em", fontFamily: "helvetica neue"
+              
+            }}>
+              <div>
+                <Header />
+              </div>
             </div>
-            {/* <div style={{ wordSpacing: 100 }}>
-              <Link routeName="Home">Home </Link>
 
-              <Link routeName="Selector">GameModeSelector </Link>
 
-              <Link routeName="SinglePlayer" params={{ name: "jamie" }}>Game </Link>
 
-              <Link routeName="Leaderboard" params={{ name: "brent" }}>Leaderboard </Link>
 
-              {/* <Link routeName="DataTesting" params={{ name: "brent" }}>DataTesting </Link> 
-
-            </div> */}
+          <div>
+            <SceneView
+              component={descriptor.getComponent()}
+              navigation={descriptor.navigation}
+            />
           </div>
-
-
-
-
-        <div>
-          <SceneView
-            component={descriptor.getComponent()}
-            navigation={descriptor.navigation}
-          />
         </div>
       </div>
     );

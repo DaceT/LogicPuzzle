@@ -28,6 +28,27 @@
   color: #61dafb;
 } */
 
+.animation{
+  text-align: center;
+  color: azure;
+  font-size: 4.0em;
+  font-weight: 100;
+}
+
+.announce{
+  text-align: center;
+  color: rgb(10, 1, 9);
+  font-size: 2.0em;
+  font-weight: 100;
+  padding: 5px;
+}
+
+.grid-st{
+  text-align: center;
+  background-color: #ff91a4;
+  height: 100%;
+}
+
 .Test {
   height: 50%;
   flex-direction: row;

@@ -7,7 +7,6 @@ import Board6x6 from './GameComponents';
 import '../App.css';
 import { Button } from 'react-bootstrap';
 import App from '../App';
-import { navigate } from '@react-navigation/core/lib/commonjs/NavigationActions';
 
 var titles = ['names-ages-birthdays', 'ages-names-superheroes']
 
@@ -54,12 +53,12 @@ class SinglePlayerGame extends React.Component {
       console.log(puzzleArray[this.state.selector].mapSol);
       console.log(puzzleArray);
       var tempSolution = [[0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0]
-      ];
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0]
+                          ];
 
       for (var arr in puzzleArray[this.state.selector].mapSol) {
         console.log(puzzleArray[this.state.selector].mapSol[arr][0], puzzleArray[this.state.selector].mapSol[arr][1]);
@@ -71,13 +70,13 @@ class SinglePlayerGame extends React.Component {
       this.setState({
         puzzle: puzzleArray,
         solution: tempSolution,
-        userSolution: [[0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0]
-        ]
+        userSolution:[[0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0]
+                      ]
 
       })
 
@@ -170,6 +169,9 @@ render() {
         <Button variant="outline-secondary">
           <Link routeName="Leaderboard">Leaderboard</Link>
         </Button>
+      </div>
+      <div className="announce">
+        Use the hints provided below to answer the puzzle!
       </div>
 
       {firebase.auth().currentUser.uid == 'GmdcUa1fwSW3fTIEljBki4uiUq53' || firebase.auth().currentUser.uid == 'NK6ud6z61vSBxiwKhnk824I9PVE2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>

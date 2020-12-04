@@ -33,7 +33,7 @@ class Square extends React.Component {
 
     render() {
         return (
-            <span><button className="cell-control" onClick={this.changeSquare}>
+            <span color="white" fontFamily="arial" ><button className="cell-control"  onClick={this.changeSquare}>
             {this.state.value}
             {"  "}
             </button>
@@ -59,7 +59,7 @@ class Board6x6 extends React.Component {
   render() {
     return (
       <div>
-        <div className="board-row">
+        <div className="board-row" style={{fontFamily:"calibri"}}>
           {this.renderSquare(this.props.rows[0][0])}
           {this.renderSquare(this.props.rows[0][1])}
           {this.renderSquare(this.props.rows[0][2])}
@@ -67,7 +67,7 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[0][4])}
           {this.renderSquare(this.props.rows[0][5])}
         </div>
-        <div className="board-row">
+        <div className="board-row" style={{fontFamily:"calibri"}}>
           {this.renderSquare(this.props.rows[1][0])}
           {this.renderSquare(this.props.rows[1][1])}
           {this.renderSquare(this.props.rows[1][2])}
@@ -75,7 +75,7 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[1][4])}
           {this.renderSquare(this.props.rows[1][5])}
         </div>
-        <div className="board-row">
+        <div className="board-row" style={{fontFamily:"calibri"}}>
           {this.renderSquare(this.props.rows[2][0])}
           {this.renderSquare(this.props.rows[2][1])}
           {this.renderSquare(this.props.rows[2][2])}
@@ -83,17 +83,17 @@ class Board6x6 extends React.Component {
           {this.renderSquare(this.props.rows[2][4])}
           {this.renderSquare(this.props.rows[2][5])}
         </div>
-        <div className="board-row">
+        <div className="board-row" style={{fontFamily:"calibri"}}>
           {this.renderSquare(this.props.rows[3][0])}
           {this.renderSquare(this.props.rows[3][1])}
           {this.renderSquare(this.props.rows[3][2])}
         </div>
-        <div className="board-row">
+        <div className="board-row" style={{fontFamily:"calibri"}}>
           {this.renderSquare(this.props.rows[4][0])}
           {this.renderSquare(this.props.rows[4][1])}
           {this.renderSquare(this.props.rows[4][2])}
         </div>
-        <div className="board-row">
+        <div className="board-row" style={{fontFamily:"calibri"}}>
           {this.renderSquare(this.props.rows[5][0])}
           {this.renderSquare(this.props.rows[5][1])}
           {this.renderSquare(this.props.rows[5][2])}
