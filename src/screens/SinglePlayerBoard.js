@@ -118,8 +118,6 @@ checkPuzzle = () => {
     for (let y = 0; y < this.state.userSolution[0].length; y++) {
       if (this.state.userSolution[x][y] != this.state.solution[x][y]) {
         this.setState({ isPuzzleCorrect: false });
-        console.log("Your puzzle is wrong");
-        // alert("Part of your puzzle is incorrect.")
         score--;
       }
       score++;
@@ -170,11 +168,11 @@ render() {
 
       <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
         <Button variant="outline-secondary">
-          <Link routeName="Leaderboard" params={{ name: "jamie" }}>Leaderboard</Link>
+          <Link routeName="Leaderboard">Leaderboard</Link>
         </Button>
       </div>
 
-      {firebase.auth().currentUser.uid == 'JKzw4RU0uOY8KwmeTMVtjsie1JK2' || firebase.auth().currentUser.uid == 'NK6ud6z61vSBxiwKhnk824I9PVE2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
+      {firebase.auth().currentUser.uid == 'GmdcUa1fwSW3fTIEljBki4uiUq53' || firebase.auth().currentUser.uid == 'NK6ud6z61vSBxiwKhnk824I9PVE2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
           <InputLabel htmlFor="select">Load Puzzle</InputLabel>
               <NativeSelect id="select" onChange={async(value) => { console.log(value.target.value); this.setState({selector: value.target.value, title: titles[value.target.value]}); 
               alert(this.state.selector); alert(this.state.title); await this.resetUserSolution() }}>

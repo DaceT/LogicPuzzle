@@ -57,6 +57,7 @@ class Leaderboard extends React.Component {
 deleteScore = () => {
 
   this.ref.doc(firebase.auth().currentUser.uid).delete();
+  this.componentDidMount();
 }
 
 
