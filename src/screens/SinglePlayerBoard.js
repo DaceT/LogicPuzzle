@@ -174,7 +174,7 @@ render() {
         Use the hints provided below to answer the puzzle!
       </div>
 
-      {firebase.auth().currentUser.uid == 'GmdcUa1fwSW3fTIEljBki4uiUq53' || firebase.auth().currentUser.uid == 'NK6ud6z61vSBxiwKhnk824I9PVE2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
+      {firebase.auth().currentUser.uid == '18MY8BQKCmXbrMeVp7WVSKKvZOr1' || firebase.auth().currentUser.uid == '3Ki96SVdY2gJSLQcEeqxKVM2pSQ2' || firebase.auth().currentUser.uid == '8rkE6kC6bzQn6qpxrvHo0F6EFTr2' || firebase.auth().currentUser.uid == 'JKzw4RU0uOY8KwmeTMVtjsie1JK2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
           <InputLabel htmlFor="select">Load Puzzle</InputLabel>
               <NativeSelect id="select" onChange={async(value) => { console.log(value.target.value); this.setState({selector: value.target.value, title: titles[value.target.value]});
                await this.resetUserSolution() }}>
