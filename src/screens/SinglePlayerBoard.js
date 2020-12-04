@@ -176,8 +176,8 @@ render() {
 
       {firebase.auth().currentUser.uid == 'GmdcUa1fwSW3fTIEljBki4uiUq53' || firebase.auth().currentUser.uid == 'NK6ud6z61vSBxiwKhnk824I9PVE2' || firebase.auth().currentUser.uid == 'T8ZRJBWncpWDehryLgFwDUMu0bx1' && <div style={{ justifyContent: 'flex-start', display: 'flex' }}>
           <InputLabel htmlFor="select">Load Puzzle</InputLabel>
-              <NativeSelect id="select" onChange={async(value) => { console.log(value.target.value); this.setState({selector: value.target.value, title: titles[value.target.value]}); 
-              alert(this.state.selector); alert(this.state.title); await this.resetUserSolution() }}>
+              <NativeSelect id="select" onChange={async(value) => { console.log(value.target.value); this.setState({selector: value.target.value, title: titles[value.target.value]});
+               await this.resetUserSolution() }}>
                 <option value="0">1 </option>
                 <option value="1">2 </option>
               </NativeSelect>
@@ -200,11 +200,11 @@ render() {
 
         </div>}
 
-        <div style={{ paddingLeft: 80 }} />
+        <div style={{ paddingLeft: 72 }} />
 
         {this.state.puzzle != undefined && <div>
           <p className={"h-text2"}>{this.state.puzzle[this.state.selector].cat4}</p>
-          <div style={{ marginBottom: 15 }} />
+          <div style={{ marginBottom: 20 }} />
 
           <div className={"right2"}>
             <div className={"Board-Options-Birthdays2"}> {this.state.puzzle[this.state.selector].cat4op[0]}</div>
@@ -253,8 +253,8 @@ render() {
         </div>
 
 
-        <div style={{ paddingLeft: 25 }} />
-        <div style={{ paddingTop: 50 }}>
+        <div style={{ paddingLeft: 35 }} />
+        <div style={{ paddingTop: 27 }}>
           <Board6x6 rows={this.state.grid} updateGrid={this.updateGrid} />
 
         </div>

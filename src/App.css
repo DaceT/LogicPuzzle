@@ -173,8 +173,8 @@
   justify-content: center;
   /* align-items: center; */
   color: white;
-  padding-left: 185px;
-  padding-bottom: 10px;
+  padding-left: 115px;
+  padding-bottom: 9px;
 }
 .row2 {
   /* width: 756px; */
@@ -196,9 +196,9 @@
 }
 
 .right2 {
-  width: 110%;
-  height: 150%;
-  padding-top: 75px;
+  width: 190%;
+  height: 250%;
+  padding-top: 80px;
   display: inline-flex;
   justify-content: center;
   align-items: left;
